@@ -35,7 +35,7 @@ export const ContactForm = () => {
   return (
     <div className="my-16 w-1/2">
       <h3 className="text-white text-2xl mb-4">Contact us now for a quick response:</h3>
-      <form action="https://mailthis.to/sangeet.khatri@gmail.com" className="container flex flex-col text-left">
+      <form action="https://mailthis.to/sangeet.khatri@gmail.com" method="POST" className="container flex flex-col text-left">
         <div className="form-group">
           <input placeholder="Name" className="form-input placeholder-gray-300" type="text" name="name" id="name" />
         </div>
