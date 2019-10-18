@@ -22,18 +22,18 @@ export const IndexPageTemplate = ({ image, title, heading, twitter, instagram, e
               </a>
             </div>
           </div>
-          <ContactForm />
+          <ContactForm email={email}/>
         </div>
       </BackgroundImage>
     </>
   )
 }
 
-export const ContactForm = () => {
+export const ContactForm = ({email}) => {
   return (
     <div className="my-16 mt-0 md:mt-10 w-full lg:w-1/2 container">
       <h3 className="text-white text-2xl mb-4">Contact us now for a quick response:</h3>
-      <form action="https://mailthis.to/sangeet.khatri@gmail.com" method="POST" className="flex flex-col text-left">
+      <form action={`https://mailthis.to/${email}`} method="POST" className="flex flex-col text-left">
         <div className="form-group">
           <input placeholder="Name" className="form-input placeholder-gray-300" type="text" name="name" id="name" />
         </div>
