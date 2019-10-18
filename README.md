@@ -1,9 +1,3 @@
-Forked from the Official NetlifyCMS Gatsby starter kit. Modifications to the original :
+Live Netlify status (needs page refresh for rechecking) :
 
-- Removed BulmaCSS
-- Added TailwindCSS
-- Added support for gatsby-background-image-es6
-- Added FontAwesome
-- Disabled previews (for now)
-- Changed deisgn to some extent accordingly
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c437b5b4-1396-48f7-ba65-3c17227fa5dc/deploy-status)](https://app.netlify.com/sites/wonderful-bohr-899df3/deploys)
