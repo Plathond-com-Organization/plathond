@@ -1,11 +1,22 @@
 module.exports = {
   siteMetadata: {
-    title: "Gatsby + TailwindCSS + Netlify CMS Starter",
-    description:
-      "This repo contains an example business website that is built with Gatsby, and Netlify CMS.It follows the JAMstack architecture by using Git as a single source of truth, and Netlify for continuous deployment, and CDN distribution.",
+    title: "Plathond",
+    description: "Traditional Quality Outdoor Gear",
   },
   plugins: [
     "gatsby-plugin-react-helmet",
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Plathond`,
+        short_name: `Plathond`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#e9463e`,
+        display: `standalone`,
+        icon: `src/img/favicon.png`
+      },
+    },
     "gatsby-plugin-sass",
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
@@ -77,7 +88,7 @@ module.exports = {
       resolve: "gatsby-plugin-purgecss", // purges all unused/unreferenced css rules
       options: {
         develop: true, // Activates purging in npm run develop
-        purgeOnly: ["/all.sass"], // applies purging only on the bulma css file
+        purgeOnly: ["/all.sass", "/tailwind.css"], // applies purging only on the bulma css file
       },
     }, // must be after other CSS plugins
     "gatsby-plugin-netlify", // make sure to keep it last in the array
