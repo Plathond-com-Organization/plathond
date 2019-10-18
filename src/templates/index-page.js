@@ -1,13 +1,13 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import "../styles/index.css"
 
 import Layout from "../components/Layout"
 import BackgroundImage from "gatsby-background-image-es5"
 
-export const IndexPageTemplate = ({ image, title, heading }) => {
+export const IndexPageTemplate = ({ image, title, heading, twitter, instagram }) => {
   return (
     <>
       <BackgroundImage Tag="section" className="bg-fixed bg-cover bg-bottom" fluid={image.childImageSharp.fluid}>
@@ -16,10 +16,10 @@ export const IndexPageTemplate = ({ image, title, heading }) => {
             <h1 className="text-white text-6xl font-bold">{title}</h1>
             <h1 className="text-white text-3xl bg-custom-red py-2 px-8 rounded-lg">{heading}</h1>
             <div className="mt-8 flex text-black text-4xl">
-              <a href="https://twitter.com/@luvnature_" target="_blank" className="social-button">
+              <a href={twitter} target="_blank" rel="noopener noreferrer" className="social-button">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a href="https://www.instagram.com/_luvnature/" target="_blank" className="social-button">
+              <a href={instagram} target="_blank" rel="noopener noreferrer" className="social-button">
                 <i className="fab fa-instagram"></i>
               </a>
             </div>
@@ -33,18 +33,23 @@ export const IndexPageTemplate = ({ image, title, heading }) => {
 
 export const ContactForm = () => {
   return (
-    <form action="" className="my-20 container flex flex-col text-left w-1/2">
-      <div className="form-group">
-        <input placeholder="Name" className="form-input placeholder-gray-300" type="text" name="name" id="name" />
-      </div>
-      <div className="form-group">
-        <input placeholder="Email" className="form-input placeholder-gray-300" type="email" name="email" id="name" />
-      </div>
-      <div className="form-group">
-        <textarea placeholder="Message" className="form-input placeholder-gray-300" name="message" id="message" cols="30" rows="5"></textarea>
-      </div>
-      <button type="submit" className="btn">Submit</button>
-    </form>
+    <div className="my-16 w-1/2">
+      <h3 className="text-white text-2xl mb-4">Contact us now for a quick response:</h3>
+      <form action="" className="container flex flex-col text-left">
+        <div className="form-group">
+          <input placeholder="Name" className="form-input placeholder-gray-300" type="text" name="name" id="name" />
+        </div>
+        <div className="form-group">
+          <input placeholder="Email" className="form-input placeholder-gray-300" type="email" name="email" id="name" />
+        </div>
+        <div className="form-group">
+          <textarea placeholder="Message" className="form-input placeholder-gray-300" name="message" id="message" cols="30" rows="5"></textarea>
+        </div>
+        <button type="submit" className="btn">
+          Submit
+        </button>
+      </form>
+    </div>
   )
 }
 
@@ -61,15 +66,10 @@ export const ContactForm = () => {
 // }
 
 const IndexPage = ({ data }) => {
-  const { title, image, heading } = data.markdownRemark.frontmatter
+  const { title, image, heading, twitter, instagram } = data.markdownRemark.frontmatter
   return (
     <Layout>
-      <IndexPageTemplate
-        image={image}
-        title={title}
-        heading={heading}
-        // subheading={frontmatter.subheading}
-      />
+      <IndexPageTemplate image={image} title={title} heading={heading} twitter={twitter} instagram={instagram} />
     </Layout>
   )
 }
@@ -100,6 +100,8 @@ export const pageQuery = graphql`
           }
         }
         heading
+        twitter
+        instagram
       }
     }
   }

@@ -19,12 +19,16 @@
 }
 
 .btn {
-  @apply py-2 px-5 border-2 border-custom-red text-custom-red rounded-lg font-bold;
+  @apply py-2 px-5 border-2 border-custom-red bg-custom-red text-white rounded-lg font-bold;
   transition: all 200ms ease;
 }
 
 .btn:hover {
-  @apply bg-custom-red text-white;
+  @apply shadow-lg bg-red-800 border-red-800;
+}
+
+.btn:active {
+  @apply shadow-lg bg-red-900 border-red-900;
 }
 
 .tr-fast {
