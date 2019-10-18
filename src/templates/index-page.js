@@ -7,7 +7,7 @@ import "../styles/index.css"
 import Layout from "../components/Layout"
 import BackgroundImage from "gatsby-background-image-es5"
 
-export const IndexPageTemplate = ({ image, title, heading, twitter, instagram }) => {
+export const IndexPageTemplate = ({ image, title, heading, twitter, instagram, email }) => {
   return (
     <>
       <BackgroundImage Tag="section" className="bg-fixed bg-cover bg-bottom" fluid={image.childImageSharp.fluid}>
@@ -35,7 +35,7 @@ export const ContactForm = () => {
   return (
     <div className="my-16 w-1/2">
       <h3 className="text-white text-2xl mb-4">Contact us now for a quick response:</h3>
-      <form action="" className="container flex flex-col text-left">
+      <form action="https://mailthis.to/sangeet.khatri@gmail.com" className="container flex flex-col text-left">
         <div className="form-group">
           <input placeholder="Name" className="form-input placeholder-gray-300" type="text" name="name" id="name" />
         </div>
@@ -66,10 +66,10 @@ export const ContactForm = () => {
 // }
 
 const IndexPage = ({ data }) => {
-  const { title, image, heading, twitter, instagram } = data.markdownRemark.frontmatter
+  const { title, image, heading, twitter, instagram, email } = data.markdownRemark.frontmatter
   return (
     <Layout>
-      <IndexPageTemplate image={image} title={title} heading={heading} twitter={twitter} instagram={instagram} />
+      <IndexPageTemplate image={image} title={title} heading={heading} twitter={twitter} instagram={instagram} email={email}/>
     </Layout>
   )
 }
@@ -102,6 +102,7 @@ export const pageQuery = graphql`
         heading
         twitter
         instagram
+        email
       }
     }
   }
