@@ -14,9 +14,10 @@ module.exports = {
 
       custom: {
         red: "#e9463e",
-        darkgray: "#696b6c",
+        darkgray: "#2b2523",
         gray: "#97979b",
         navyblue: "#001423",
+        'black-50': "rgba(0,0,0,0.5)",
       },
 
       black: "#000",

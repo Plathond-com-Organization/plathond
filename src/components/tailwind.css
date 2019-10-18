@@ -2,16 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+.social-button {
+  @apply mx-3 w-16 h-16 bg-white rounded-full flex justify-center items-center;
+}
+
 .form-group {
    @apply my-2 flex flex-col;
 }
 
 .form-label {
-  @apply my-2;
+  @apply my-2 text-white;
 }
 
 .form-input {
-  @apply bg-gray-200 p-2;
+  @apply bg-custom-black-50 text-white p-4;
 }
 
 .btn {

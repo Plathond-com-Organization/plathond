@@ -1,30 +1,13 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
-import logo from "../img/logo.png"
+import logo from "../img/logo.svg"
 
 const Navbar = () => {
   const links = [
-    {
-      name: "About",
-      href: "/about",
-    },
-    {
-      name: "Products",
-      href: "/products",
-    },
-    {
-      name: "Blog",
-      href: "/blog",
-    },
-    {
-      name: "Contact",
-      href: "/contact",
-    },
-    {
-      name: "What We Do",
-      href: "/whatwedo",
-    },
-
+    // {
+    //   name: "About",
+    //   href: "/about",
+    // },
   ]
 
   const [isNavToggle, toggleNavbar] = useState(false);
@@ -33,7 +16,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="container py-5 flex flex-wrap justify-between items-center">
+      <nav className="container flex flex-wrap justify-between items-center">
         <Link to="/" className="w-48 nav-header flex-shrink-0">
           <img className="object-fit" src={logo} alt="Silent Cow" />
         </Link>

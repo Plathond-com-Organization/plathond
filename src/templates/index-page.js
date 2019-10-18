@@ -5,78 +5,70 @@ import { Link, graphql } from "gatsby"
 import "../styles/index.css"
 
 import Layout from "../components/Layout"
-import Features from "../components/Features"
-import BlogRoll from "../components/BlogRoll"
-import Hero from "../components/misc/Hero"
-import { WhatCardItem } from '../templates/what-we-do'
+import BackgroundImage from "gatsby-background-image-es5"
 
-export const IndexPageTemplate = ({ whats, image, title, heading, subheading, mainpitch, description, intro }) => (
-  <div className="home-page">
-    <section id="home-hero">
-      <Hero imageFluid={image.childImageSharp.fluid} heading={title} subheading={subheading}></Hero>
-    </section>
-
-    <section class="container flex mt-20">
-      {whats.map(( what, index ) => (
-        <WhatCardItem cardNum={index+1} cardText={what.title}></WhatCardItem>
-      ))}
-    </section>
-
-    <section id="home-intro" className="container leading-tight pt-32 pb-10">
-      <div>
-        <h4 className="text-4xl font-bold">{mainpitch.title}</h4>
-        <p className="mt-4 text-xl font-bold">{mainpitch.description}</p>
-      </div>
-      <div>
-        <h2 className="mt-8 text-5xl font-bold">{heading}</h2>
-        <p className="mt-2 text-lg leading-relaxed">{description}</p>
-      </div>
-    </section>
-
-    <section id="home-products" className="container flex flex-col pb-10">
-      <Features gridItems={intro.blurbs} />
-      <Link className="mt-5 btn self-center" to="/products">
-        See all products
-      </Link>
-    </section>
-
-    <section id="home-stories" className="container flex flex-col pt-10 pb-20">
-      <h3 className="text-4xl font-bold">Latest stories</h3>
-      <BlogRoll />
-      <Link className="mt-5 btn self-center" to="/blog">
-        Read more
-      </Link>
-    </section>
-  </div>
-)
-
-IndexPageTemplate.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  title: PropTypes.string,
-  heading: PropTypes.string,
-  subheading: PropTypes.string,
-  mainpitch: PropTypes.object,
-  description: PropTypes.string,
-  intro: PropTypes.shape({
-    blurbs: PropTypes.array,
-  }),
+export const IndexPageTemplate = ({ image, title, heading }) => {
+  return (
+    <>
+      <BackgroundImage Tag="section" className="bg-fixed bg-cover bg-bottom" fluid={image.childImageSharp.fluid}>
+        <div className="text-center bg-custom-black-50 flex flex-col justify-center items-center">
+          <div className="flex flex-col items-center my-20">
+            <h1 className="text-white text-6xl font-bold">{title}</h1>
+            <h1 className="text-white text-3xl bg-custom-red py-2 px-8 rounded-lg">{heading}</h1>
+            <div className="mt-8 flex text-black text-4xl">
+              <a href="https://twitter.com/@luvnature_" target="_blank" className="social-button">
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a href="https://www.instagram.com/_luvnature/" target="_blank" className="social-button">
+                <i className="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+          <ContactForm />
+        </div>
+      </BackgroundImage>
+    </>
+  )
 }
 
-const IndexPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
-  const whats = data.whats.frontmatter.whats
+export const ContactForm = () => {
+  return (
+    <form action="" className="my-20 container flex flex-col text-left w-1/2">
+      <div className="form-group">
+        <input placeholder="Name" className="form-input placeholder-gray-300" type="text" name="name" id="name" />
+      </div>
+      <div className="form-group">
+        <input placeholder="Email" className="form-input placeholder-gray-300" type="email" name="email" id="name" />
+      </div>
+      <div className="form-group">
+        <textarea placeholder="Message" className="form-input placeholder-gray-300" name="message" id="message" cols="30" rows="5"></textarea>
+      </div>
+      <button type="submit" className="btn">Submit</button>
+    </form>
+  )
+}
 
+// IndexPageTemplate.propTypes = {
+//   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+//   title: PropTypes.string,
+//   heading: PropTypes.string,
+//   subheading: PropTypes.string,
+//   mainpitch: PropTypes.object,
+//   description: PropTypes.string,
+//   intro: PropTypes.shape({
+//     blurbs: PropTypes.array,
+//   }),
+// }
+
+const IndexPage = ({ data }) => {
+  const { title, image, heading } = data.markdownRemark.frontmatter
   return (
     <Layout>
       <IndexPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        heading={frontmatter.heading}
-        subheading={frontmatter.subheading}
-        mainpitch={frontmatter.mainpitch}
-        description={frontmatter.description}
-        intro={frontmatter.intro}
-        whats={whats}
+        image={image}
+        title={title}
+        heading={heading}
+        // subheading={frontmatter.subheading}
       />
     </Layout>
   )
@@ -108,37 +100,6 @@ export const pageQuery = graphql`
           }
         }
         heading
-        subheading
-        mainpitch {
-          title
-          description
-        }
-        description
-        intro {
-          blurbs {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 640, quality: 75) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                }
-              }
-            }
-            text
-          }
-          heading
-          description
-        }
-      }
-    }
-    whats: markdownRemark(frontmatter: { templateKey: { eq: "what-we-do" } }) {
-      frontmatter {
-        whats {
-          title
-          description
-          image {
-            absolutePath
-          }
-        }
       }
     }
   }
