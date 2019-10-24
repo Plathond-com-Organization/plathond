@@ -6,7 +6,7 @@ heading: >-
   For product information or trade enquiries please contact:
   info@southerntradehq.com
 twitter: 'https://twitter.com/@luvnature_'
-instagram: 'https://www.instagram.com/_luvnature/test'
+instagram: 'https://www.instagram.com/_luvnature'
 email: info@southerntradehq.com
 ---
 
